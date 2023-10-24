@@ -20,8 +20,9 @@ public class AnswerManager : MonoBehaviour
     Alphabet hiragana = new();
     Alphabet katakana = new();
 
-    List<Syllab> syllabsPure = new();
-    List<Syllab> syllabsTest = new();
+    List<Syllab> syllabesPure = new();
+    List<Syllab> syllabesImpure = new();
+    List<Syllab> syllabesTest = new();
 
     int currentNumberSyllab = 0;
     int correctAnswers = 0;
@@ -35,8 +36,9 @@ public class AnswerManager : MonoBehaviour
     void Start()
     {
         LoadJson();
-        InitSyllabes();
-        PureKatakanaLearning();
+        InitPureSyllabes();
+        InitImpureSyllabes();
+        ImpureKatakanaLearning();
     }
 
     void LoadJson()
@@ -46,7 +48,7 @@ public class AnswerManager : MonoBehaviour
         katakana = JsonUtility.FromJson<Alphabet>(katakanaJson.text);
     }
 
-    void InitSyllabes()
+    void InitPureSyllabes()
     {
         for (int i = 0; i < romaji.pure.Length; i++)
         {
@@ -54,26 +56,56 @@ public class AnswerManager : MonoBehaviour
             syllab.romaji = romaji.pure[i];
             syllab.hiragana = hiragana.pure[i];
             syllab.katakana = katakana.pure[i];
-            syllabsPure.Add(syllab);
+            syllabesPure.Add(syllab);
+        }
+    }
+
+    void InitImpureSyllabes()
+    {
+        for (int i = 0; i < romaji.impure.Length; i++)
+        {
+            Syllab syllab = new();
+            syllab.romaji = romaji.impure[i];
+            syllab.hiragana = hiragana.impure[i];
+            syllab.katakana = katakana.impure[i];
+            syllabesImpure.Add(syllab);
         }
     }
 
     void PureHiraganaLearning()
     {
-        syllabsTest = syllabsPure;
+        syllabesTest = syllabesPure;
         answerText.text = "";
         alphabet = 1;
-        DisplaySyllab(syllabsTest[currentNumberSyllab]);
-        inputAnswer.text = syllabsTest[currentNumberSyllab].romaji;
+        DisplaySyllab(syllabesTest[currentNumberSyllab], alphabet);
+        inputAnswer.text = syllabesTest[currentNumberSyllab].romaji;
     }
 
     void PureKatakanaLearning()
     {
-        syllabsTest = syllabsPure;
+        syllabesTest = syllabesPure;
         answerText.text = "";
         alphabet = 2;
-        DisplaySyllab(syllabsTest[currentNumberSyllab], alphabet);
-        inputAnswer.text = syllabsTest[currentNumberSyllab].romaji;
+        DisplaySyllab(syllabesTest[currentNumberSyllab], alphabet);
+        inputAnswer.text = syllabesTest[currentNumberSyllab].romaji;
+    }
+
+    void ImpureHiraganaLearning()
+    {
+        syllabesTest = syllabesImpure;
+        answerText.text = "";
+        alphabet = 1;
+        DisplaySyllab(syllabesTest[currentNumberSyllab], alphabet);
+        inputAnswer.text = syllabesTest[currentNumberSyllab].romaji;
+    }
+
+    void ImpureKatakanaLearning()
+    {
+        syllabesTest = syllabesImpure;
+        answerText.text = "";
+        alphabet = 2;
+        DisplaySyllab(syllabesTest[currentNumberSyllab], alphabet);
+        inputAnswer.text = syllabesTest[currentNumberSyllab].romaji;
     }
 
     void DisplaySyllab(Syllab syl, int alphabet = 1)
@@ -86,8 +118,8 @@ public class AnswerManager : MonoBehaviour
     public void AnswerLearning()
     {
         NextSyllab();
-        inputAnswer.text = syllabsTest[currentNumberSyllab].romaji;
-        correctText.text = "✔ "+ (currentNumberSyllab +1) + "/" + syllabsTest.Count;
+        inputAnswer.text = syllabesTest[currentNumberSyllab].romaji;
+        correctText.text = "✔ "+ (currentNumberSyllab +1) + "/" + syllabesTest.Count;
     }
 
     public void CheckAnswer()
@@ -97,7 +129,7 @@ public class AnswerManager : MonoBehaviour
         inputAnswer.text = "";
         answerText.text = syl;
 
-        if (string.Compare(answer, syllabsTest[currentNumberSyllab].romaji) == 0)
+        if (string.Compare(answer, syllabesTest[currentNumberSyllab].romaji) == 0)
         {
             answerText.color = Color.green;
             correctAnswers++;
@@ -112,10 +144,10 @@ public class AnswerManager : MonoBehaviour
 
     void NextSyllab()
     {
-        if (currentNumberSyllab < syllabsTest.Count-1)
+        if (currentNumberSyllab < syllabesTest.Count-1)
         {
             currentNumberSyllab++;
-            DisplaySyllab(syllabsTest[currentNumberSyllab], alphabet);
+            DisplaySyllab(syllabesTest[currentNumberSyllab], alphabet);
         }
         else
         {
