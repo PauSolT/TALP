@@ -202,6 +202,7 @@ public class AnswerManager : MonoBehaviour
     void ChangeMode(int alph, bool learning )
     {
         answerText.text = "";
+        answerRomajiText.text = "";
         alphabet = alph;
         correctText.text = "✔ ";
         currentNumberSyllab = 0;
@@ -213,11 +214,14 @@ public class AnswerManager : MonoBehaviour
         {
             buttonAnswer.onClick.RemoveAllListeners();
             buttonAnswer.onClick.AddListener(() => CheckAnswer());
-        } else
+            correctText.text = "✔ " + correctAnswers + "/" + (currentNumberSyllab);
+        }
+        else
         {
             buttonAnswer.onClick.RemoveAllListeners();
             buttonAnswer.onClick.AddListener(() => AnswerLearning());
             inputAnswer.text = syllabesTest[currentNumberSyllab].romaji;
+            correctText.text = "✔ "+ (currentNumberSyllab +1) + "/" + syllabesTest.Count;
         }
     }
 
@@ -234,6 +238,7 @@ public class AnswerManager : MonoBehaviour
         NextSyllab();
         inputAnswer.text = syllabesTest[currentNumberSyllab].romaji;
         correctText.text = "✔ "+ (currentNumberSyllab +1) + "/" + syllabesTest.Count;
+        answerRomajiText.text = syllabesTest[currentNumberSyllab].romaji;
     }
 
     public void CheckAnswer()
