@@ -51,6 +51,15 @@ public class AnswerManager : MonoBehaviour
         InitDiphthongSyllabes();
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(null);
+            buttonAnswer.onClick.Invoke();
+        }
+    }
+
     void LoadJson()
     {
         romaji = JsonUtility.FromJson<Alphabet>(romajiJson.text);
