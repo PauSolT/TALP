@@ -32,15 +32,15 @@ public class AnswerManager : MonoBehaviour
 
     string currentSyllab = "";
     string save = "";
-    string saveTestHiraganaPure = "saveTestHiraganaPure";
-    string saveTestHiraganaImpure = "saveTestHiraganaImpure";
-    string saveTestHiraganaDiphthong = "saveTestHiraganaDiphthong";
-    string saveTestHiragana = "saveTestHiragana";
-    string saveTestKatakanaPure = "saveTestKatakanaPure";
-    string saveTestKatakanaImpure = "saveTestKatakanaImpure";
-    string saveTestKatakanaDiphthong = "saveTestKatakanaDiphthong";
-    string saveTestKatakana = "saveTestKatakana";
-    string saveTestHiraganaKatakana = "saveTestHiraganaKatakana";
+    readonly string saveTestHiraganaPure = "saveTestHiraganaPure";
+    readonly string saveTestHiraganaImpure = "saveTestHiraganaImpure";
+    readonly string saveTestHiraganaDiphthong = "saveTestHiraganaDiphthong";
+    readonly string saveTestHiragana = "saveTestHiragana";
+    readonly string saveTestKatakanaPure = "saveTestKatakanaPure";
+    readonly string saveTestKatakanaImpure = "saveTestKatakanaImpure";
+    readonly string saveTestKatakanaDiphthong = "saveTestKatakanaDiphthong";
+    readonly string saveTestKatakana = "saveTestKatakana";
+    readonly string saveTestHiraganaKatakana = "saveTestHiraganaKatakana";
 
 
     // Start is called before the first frame update
@@ -299,18 +299,18 @@ public class AnswerManager : MonoBehaviour
             if (syl.alreadyHiragana)
             {
                 syllab = syl.katakana;
-                foreach (Syllab syllabToChange in syllabesTest.FindAll(s => s == syl))
-                {
-                    syllabToChange.alreadyKatakana = true;
-                }
+                //foreach (Syllab syllabToChange in syllabesTest.FindAll(s => s == syl))
+                //{
+                //    syllabToChange.alreadyKatakana = true;
+                //}
 
             } else if (syl.alreadyKatakana)
             {
                 syllab = syl.hiragana;
-                foreach (Syllab syllabToChange in syllabesTest.FindAll(s => s == syl))
-                {
-                    syllabToChange.alreadyHiragana = true;
-                }
+                //foreach (Syllab syllabToChange in syllabesTest.FindAll(s => s == syl))
+                //{
+                //    syllabToChange.alreadyHiragana = true;
+                //}
             }
             else
             {
