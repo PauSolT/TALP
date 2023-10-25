@@ -24,7 +24,7 @@ public class AnswerManager : MonoBehaviour
     List<Syllab> syllabesPure = new();
     List<Syllab> syllabesImpure = new();
     List<Syllab> syllabesDiphthong= new();
-    List<Syllab> syllabesTest = new();
+    public List<Syllab> syllabesTest = new();
 
     int currentNumberSyllab = 0;
     int correctAnswers = 0;
@@ -40,6 +40,7 @@ public class AnswerManager : MonoBehaviour
     string saveTestKatakanaImpure = "saveTestKatakanaImpure";
     string saveTestKatakanaDiphthong = "saveTestKatakanaDiphthong";
     string saveTestKatakana = "saveTestKatakana";
+    string saveTestHiraganaKatakana = "saveTestHiraganaKatakana";
 
 
     // Start is called before the first frame update
@@ -235,13 +236,28 @@ public class AnswerManager : MonoBehaviour
         ChangeMode(2, false);
     }
 
+    public void HiraganaAndKatakanaTest()
+    {
+        save = saveTestHiraganaKatakana;
+        syllabesTest.Clear();
+        syllabesTest.AddRange(syllabesPure);
+        syllabesTest.AddRange(syllabesImpure);
+        syllabesTest.AddRange(syllabesDiphthong);
+        syllabesTest.AddRange(syllabesPure);
+        syllabesTest.AddRange(syllabesImpure);
+        syllabesTest.AddRange(syllabesDiphthong);
+        IListExtensions.Shuffle(syllabesTest);
+        ChangeMode(3, false);
+
+    }
+
     void ChangeMode(int alph, bool learning)
     {
         answerText.text = "";
         inputAnswer.text = "";
         answerRomajiText.text = "";
         alphabet = alph;
-        correctText.text = "✔ ";
+        correctText.text = "✔";
         currentNumberSyllab = 0;
         correctAnswers = 0;
         currentSyllab = "";
@@ -269,7 +285,53 @@ public class AnswerManager : MonoBehaviour
 
     void DisplaySyllab(Syllab syl, int alphabet = 1)
     {
-        string syllab = alphabet == 1 ? syl.hiragana : syl.katakana;
+        string syllab = "";
+        if (alphabet == 1)
+        {
+            syllab = syl.hiragana;
+        }
+        else if (alphabet == 2)
+        {
+            syllab = syl.katakana;
+        }
+        else if (alphabet == 3)
+        {
+            if (syl.alreadyHiragana)
+            {
+                syllab = syl.katakana;
+                foreach (Syllab syllabToChange in syllabesTest.FindAll(s => s == syl))
+                {
+                    syllabToChange.alreadyKatakana = true;
+                }
+
+            } else if (syl.alreadyKatakana)
+            {
+                syllab = syl.hiragana;
+                foreach (Syllab syllabToChange in syllabesTest.FindAll(s => s == syl))
+                {
+                    syllabToChange.alreadyHiragana = true;
+                }
+            }
+            else
+            {
+                int rand = Random.Range(0, 2);
+                if (rand == 1)
+                {
+                    syllab = syl.hiragana;
+                    foreach (Syllab syllabToChange in syllabesTest.FindAll(s => s == syl))
+                    {
+                        syllabToChange.alreadyHiragana = true;
+                    } 
+                } else
+                {
+                    syllab = syl.katakana;
+                    foreach (Syllab syllabToChange in syllabesTest.FindAll(s => s == syl))
+                    {
+                        syllabToChange.alreadyKatakana = true;
+                    }
+                }
+            }
+        }
         questionText.text = syllab;
         currentSyllab = syllab; 
     }
@@ -335,6 +397,8 @@ public class AnswerManager : MonoBehaviour
         public string romaji;
         public string hiragana;
         public string katakana;
+        public bool alreadyHiragana = false;
+        public bool alreadyKatakana = false;
     }
 
     class Alphabet
