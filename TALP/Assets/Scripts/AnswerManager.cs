@@ -28,7 +28,6 @@ public class AnswerManager : MonoBehaviour
 
     int currentNumberSyllab = 0;
     int correctAnswers = 0;
-    int alphabet = 1;
 
     string currentSyllab = "";
     string save = "";
@@ -74,9 +73,14 @@ public class AnswerManager : MonoBehaviour
         {
             Syllab syllab = new();
             syllab.romaji = romaji.pure[i];
-            syllab.hiragana = hiragana.pure[i];
-            syllab.katakana = katakana.pure[i];
+            syllab.japanese = hiragana.pure[i];
+            syllab.type = 1;
             syllabesPure.Add(syllab);
+            Syllab syllab2 = new();
+            syllab2.romaji = romaji.pure[i];
+            syllab2.japanese = katakana.pure[i];
+            syllab2.type = 2;
+            syllabesPure.Add(syllab2);
         }
     }
 
@@ -86,9 +90,14 @@ public class AnswerManager : MonoBehaviour
         {
             Syllab syllab = new();
             syllab.romaji = romaji.impure[i];
-            syllab.hiragana = hiragana.impure[i];
-            syllab.katakana = katakana.impure[i];
+            syllab.japanese = hiragana.impure[i];
+            syllab.type = 1;
             syllabesImpure.Add(syllab);
+            Syllab syllab2 = new();
+            syllab2.romaji = romaji.impure[i];
+            syllab2.japanese = katakana.impure[i];
+            syllab2.type = 2;
+            syllabesImpure.Add(syllab2);
         }
     }
 
@@ -98,8 +107,13 @@ public class AnswerManager : MonoBehaviour
         {
             Syllab syllab = new();
             syllab.romaji = romaji.diphthong[i];
-            syllab.hiragana = hiragana.diphthong[i];
-            syllab.katakana = katakana.diphthong[i];
+            syllab.japanese = hiragana.diphthong[i];
+            syllab.type = 1;
+            syllabesDiphthong.Add(syllab);
+            Syllab syllab2 = new();
+            syllab2.romaji = romaji.diphthong[i];
+            syllab2.japanese = katakana.diphthong[i];
+            syllab2.type = 2;
             syllabesDiphthong.Add(syllab);
         }
     }
@@ -108,14 +122,14 @@ public class AnswerManager : MonoBehaviour
     {
         
         syllabesTest.Clear();
-        syllabesTest.AddRange(syllabesPure);
+        syllabesTest.AddRange(syllabesPure.FindAll(s => s.type == 1));
         if (!learning)
         {
             IListExtensions.Shuffle(syllabesTest);
             save = saveTestHiraganaPure;
         }
 
-        ChangeMode(1, learning);
+        ChangeMode(learning);
     }
 
     public void PureHiraganaLearning()
@@ -126,14 +140,14 @@ public class AnswerManager : MonoBehaviour
     public void PureKatakanaTest(bool learning = false)
     {
         syllabesTest.Clear();
-        syllabesTest.AddRange(syllabesPure);
+        syllabesTest.AddRange(syllabesPure.FindAll(s => s.type == 2));
         if (!learning)
         {
             IListExtensions.Shuffle(syllabesTest);
             save = saveTestKatakanaPure;
         }
 
-        ChangeMode(2, learning);
+        ChangeMode(learning);
         
     }
 
@@ -145,14 +159,14 @@ public class AnswerManager : MonoBehaviour
     public void ImpureHiraganaTest(bool learning = false)
     {
         syllabesTest.Clear();
-        syllabesTest.AddRange(syllabesImpure);
+        syllabesTest.AddRange(syllabesImpure.FindAll(s => s.type == 1));
         if (!learning)
         {
             IListExtensions.Shuffle(syllabesTest);
             save = saveTestHiraganaImpure;
         }
         
-        ChangeMode(1, learning);
+        ChangeMode(learning);
     }
 
     public void ImpureHiraganaLearning()
@@ -163,14 +177,14 @@ public class AnswerManager : MonoBehaviour
     public void ImpureKatakanaTest(bool learning = false)
     {
         syllabesTest.Clear();
-        syllabesTest.AddRange(syllabesImpure);
+        syllabesTest.AddRange(syllabesImpure.FindAll(s => s.type == 2));
         if (!learning)
         {
             IListExtensions.Shuffle(syllabesTest);
             save = saveTestKatakanaImpure;
         }
         
-        ChangeMode(2, learning);
+        ChangeMode(learning);
         
     }
 
@@ -182,14 +196,14 @@ public class AnswerManager : MonoBehaviour
     public void DiphthongHiraganaTest(bool learning = false)
     {
         syllabesTest.Clear();
-        syllabesTest.AddRange(syllabesDiphthong);
+        syllabesTest.AddRange(syllabesDiphthong.FindAll(s => s.type == 1));
         if (!learning)
         {
             IListExtensions.Shuffle(syllabesTest);
             save = saveTestHiraganaDiphthong;
         }
 
-        ChangeMode(1, learning);
+        ChangeMode(learning);
     }
 
     public void DiphthongHiraganaLearning()
@@ -200,13 +214,13 @@ public class AnswerManager : MonoBehaviour
     public void DiphthongKatakanaTest(bool learning = false)
     {
         syllabesTest.Clear();
-        syllabesTest.AddRange(syllabesDiphthong);
+        syllabesTest.AddRange(syllabesDiphthong.FindAll(s => s.type == 2));
         if (!learning)
         {
             IListExtensions.Shuffle(syllabesTest);
             save = saveTestKatakanaDiphthong;
         }
-        ChangeMode(2, learning);
+        ChangeMode(learning);
     }
 
     public void DiphthongKatakanaLearning()
@@ -218,22 +232,22 @@ public class AnswerManager : MonoBehaviour
     {
         save = saveTestHiragana;
         syllabesTest.Clear();
-        syllabesTest.AddRange(syllabesPure);
-        syllabesTest.AddRange(syllabesImpure);
-        syllabesTest.AddRange(syllabesDiphthong);
+        syllabesTest.AddRange(syllabesPure.FindAll(s => s.type == 1));
+        syllabesTest.AddRange(syllabesImpure.FindAll(s => s.type == 1));
+        syllabesTest.AddRange(syllabesDiphthong.FindAll(s => s.type == 1));
         IListExtensions.Shuffle(syllabesTest);
-        ChangeMode(1, false);
+        ChangeMode(false);
     }
 
     public void KatakanaTest()
     {
         save = saveTestKatakana;
         syllabesTest.Clear();
-        syllabesTest.AddRange(syllabesPure);
-        syllabesTest.AddRange(syllabesImpure);
-        syllabesTest.AddRange(syllabesDiphthong);
+        syllabesTest.AddRange(syllabesPure.FindAll(s => s.type == 2));
+        syllabesTest.AddRange(syllabesImpure.FindAll(s => s.type == 2));
+        syllabesTest.AddRange(syllabesDiphthong.FindAll(s => s.type == 2));
         IListExtensions.Shuffle(syllabesTest);
-        ChangeMode(2, false);
+        ChangeMode(false);
     }
 
     public void HiraganaAndKatakanaTest()
@@ -243,25 +257,21 @@ public class AnswerManager : MonoBehaviour
         syllabesTest.AddRange(syllabesPure);
         syllabesTest.AddRange(syllabesImpure);
         syllabesTest.AddRange(syllabesDiphthong);
-        syllabesTest.AddRange(syllabesPure);
-        syllabesTest.AddRange(syllabesImpure);
-        syllabesTest.AddRange(syllabesDiphthong);
         IListExtensions.Shuffle(syllabesTest);
-        ChangeMode(3, false);
+        ChangeMode(false);
 
     }
 
-    void ChangeMode(int alph, bool learning)
+    void ChangeMode(bool learning)
     {
         answerText.text = "";
         inputAnswer.text = "";
         answerRomajiText.text = "";
-        alphabet = alph;
         correctText.text = "✔";
         currentNumberSyllab = 0;
         correctAnswers = 0;
         currentSyllab = "";
-        DisplaySyllab(syllabesTest[currentNumberSyllab], alphabet);
+        DisplaySyllab(syllabesTest[currentNumberSyllab]);
 
         if (!learning)
         {
@@ -283,55 +293,9 @@ public class AnswerManager : MonoBehaviour
     }
 
 
-    void DisplaySyllab(Syllab syl, int alphabet = 1)
+    void DisplaySyllab(Syllab syl)
     {
-        string syllab = "";
-        if (alphabet == 1)
-        {
-            syllab = syl.hiragana;
-        }
-        else if (alphabet == 2)
-        {
-            syllab = syl.katakana;
-        }
-        else if (alphabet == 3)
-        {
-            if (syl.alreadyHiragana)
-            {
-                syllab = syl.katakana;
-                //foreach (Syllab syllabToChange in syllabesTest.FindAll(s => s == syl))
-                //{
-                //    syllabToChange.alreadyKatakana = true;
-                //}
-
-            } else if (syl.alreadyKatakana)
-            {
-                syllab = syl.hiragana;
-                //foreach (Syllab syllabToChange in syllabesTest.FindAll(s => s == syl))
-                //{
-                //    syllabToChange.alreadyHiragana = true;
-                //}
-            }
-            else
-            {
-                int rand = Random.Range(0, 2);
-                if (rand == 1)
-                {
-                    syllab = syl.hiragana;
-                    foreach (Syllab syllabToChange in syllabesTest.FindAll(s => s == syl))
-                    {
-                        syllabToChange.alreadyHiragana = true;
-                    } 
-                } else
-                {
-                    syllab = syl.katakana;
-                    foreach (Syllab syllabToChange in syllabesTest.FindAll(s => s == syl))
-                    {
-                        syllabToChange.alreadyKatakana = true;
-                    }
-                }
-            }
-        }
+        string syllab = syl.japanese;
         questionText.text = syllab;
         currentSyllab = syllab; 
     }
@@ -370,7 +334,7 @@ public class AnswerManager : MonoBehaviour
         if (currentNumberSyllab < syllabesTest.Count-1)
         {
             currentNumberSyllab++;
-            DisplaySyllab(syllabesTest[currentNumberSyllab], alphabet);
+            DisplaySyllab(syllabesTest[currentNumberSyllab]);
         }
         else
         {
