@@ -41,6 +41,8 @@ public class AnswerManager : MonoBehaviour
     readonly string saveTestKatakana = "saveTestKatakana";
     readonly string saveTestHiraganaKatakana = "saveTestHiraganaKatakana";
 
+    TouchScreenKeyboard touchScreenKeyboard;
+
 
     // Start is called before the first frame update
     void Start()
@@ -49,11 +51,12 @@ public class AnswerManager : MonoBehaviour
         InitPureSyllabes();
         InitImpureSyllabes();
         InitDiphthongSyllabes();
+        touchScreenKeyboard = TouchScreenKeyboard.Open("", TouchScreenKeyboardType.Default);
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.Return) || (touchScreenKeyboard != null && touchScreenKeyboard.status == TouchScreenKeyboard.Status.Done))
         {
             UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(null);
             buttonAnswer.onClick.Invoke();
@@ -114,7 +117,7 @@ public class AnswerManager : MonoBehaviour
             syllab2.romaji = romaji.diphthong[i];
             syllab2.japanese = katakana.diphthong[i];
             syllab2.type = 2;
-            syllabesDiphthong.Add(syllab);
+            syllabesDiphthong.Add(syllab2);
         }
     }
 
