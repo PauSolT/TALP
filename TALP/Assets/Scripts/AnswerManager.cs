@@ -30,19 +30,10 @@ public class AnswerManager : MonoBehaviour
     int correctAnswers = 0;
 
     string currentSyllab = "";
-    string save = "";
-    readonly string saveTestHiraganaPure = "saveTestHiraganaPure";
-    readonly string saveTestHiraganaImpure = "saveTestHiraganaImpure";
-    readonly string saveTestHiraganaDiphthong = "saveTestHiraganaDiphthong";
-    readonly string saveTestHiragana = "saveTestHiragana";
-    readonly string saveTestKatakanaPure = "saveTestKatakanaPure";
-    readonly string saveTestKatakanaImpure = "saveTestKatakanaImpure";
-    readonly string saveTestKatakanaDiphthong = "saveTestKatakanaDiphthong";
-    readonly string saveTestKatakana = "saveTestKatakana";
-    readonly string saveTestHiraganaKatakana = "saveTestHiraganaKatakana";
+    
 
     TouchScreenKeyboard touchScreenKeyboard;
-
+    SaveManager saveManager;
 
     // Start is called before the first frame update
     void Start()
@@ -52,6 +43,7 @@ public class AnswerManager : MonoBehaviour
         InitImpureSyllabes();
         InitDiphthongSyllabes();
         touchScreenKeyboard = TouchScreenKeyboard.Open("", TouchScreenKeyboardType.Default);
+        saveManager = GetComponent<SaveManager>();
     }
 
     private void Update()
@@ -129,7 +121,7 @@ public class AnswerManager : MonoBehaviour
         if (!learning)
         {
             IListExtensions.Shuffle(syllabesTest);
-            save = saveTestHiraganaPure;
+            saveManager.SetCurrentSave(saveManager.GetSaveKey(1));
         }
 
         ChangeMode(learning);
@@ -147,7 +139,7 @@ public class AnswerManager : MonoBehaviour
         if (!learning)
         {
             IListExtensions.Shuffle(syllabesTest);
-            save = saveTestKatakanaPure;
+            saveManager.SetCurrentSave(saveManager.GetSaveKey(5));
         }
 
         ChangeMode(learning);
@@ -166,9 +158,9 @@ public class AnswerManager : MonoBehaviour
         if (!learning)
         {
             IListExtensions.Shuffle(syllabesTest);
-            save = saveTestHiraganaImpure;
+            saveManager.SetCurrentSave(saveManager.GetSaveKey(2));
         }
-        
+
         ChangeMode(learning);
     }
 
@@ -184,9 +176,9 @@ public class AnswerManager : MonoBehaviour
         if (!learning)
         {
             IListExtensions.Shuffle(syllabesTest);
-            save = saveTestKatakanaImpure;
+            saveManager.SetCurrentSave(saveManager.GetSaveKey(6));
         }
-        
+
         ChangeMode(learning);
         
     }
@@ -203,7 +195,7 @@ public class AnswerManager : MonoBehaviour
         if (!learning)
         {
             IListExtensions.Shuffle(syllabesTest);
-            save = saveTestHiraganaDiphthong;
+            saveManager.SetCurrentSave(saveManager.GetSaveKey(3));
         }
 
         ChangeMode(learning);
@@ -221,7 +213,7 @@ public class AnswerManager : MonoBehaviour
         if (!learning)
         {
             IListExtensions.Shuffle(syllabesTest);
-            save = saveTestKatakanaDiphthong;
+            saveManager.SetCurrentSave(saveManager.GetSaveKey(7));
         }
         ChangeMode(learning);
     }
@@ -233,7 +225,7 @@ public class AnswerManager : MonoBehaviour
 
     public void HiraganaTest()
     {
-        save = saveTestHiragana;
+        saveManager.SetCurrentSave(saveManager.GetSaveKey(4));
         syllabesTest.Clear();
         syllabesTest.AddRange(syllabesPure.FindAll(s => s.type == 1));
         syllabesTest.AddRange(syllabesImpure.FindAll(s => s.type == 1));
@@ -244,7 +236,7 @@ public class AnswerManager : MonoBehaviour
 
     public void KatakanaTest()
     {
-        save = saveTestKatakana;
+        saveManager.SetCurrentSave(saveManager.GetSaveKey(8));
         syllabesTest.Clear();
         syllabesTest.AddRange(syllabesPure.FindAll(s => s.type == 2));
         syllabesTest.AddRange(syllabesImpure.FindAll(s => s.type == 2));
@@ -255,7 +247,7 @@ public class AnswerManager : MonoBehaviour
 
     public void HiraganaAndKatakanaTest()
     {
-        save = saveTestHiraganaKatakana;
+        saveManager.SetCurrentSave(saveManager.GetSaveKey(9));
         syllabesTest.Clear();
         syllabesTest.AddRange(syllabesPure);
         syllabesTest.AddRange(syllabesImpure);
@@ -281,7 +273,7 @@ public class AnswerManager : MonoBehaviour
             buttonAnswer.onClick.RemoveAllListeners();
             buttonAnswer.onClick.AddListener(() => CheckAnswer());
             correctText.text = "✔ " + correctAnswers + "/" + (currentNumberSyllab);
-            bestText.text = "MEJOR: " + PlayerPrefs.GetInt(save, 0);
+            bestText.text = "MEJOR: " + PlayerPrefs.GetInt(saveManager.GetCurrentSave(), 0);
             inputAnswer.Select();
         }
         else
@@ -290,7 +282,7 @@ public class AnswerManager : MonoBehaviour
             buttonAnswer.onClick.AddListener(() => AnswerLearning());
             inputAnswer.text = syllabesTest[currentNumberSyllab].romaji;
             correctText.text = "✔ "+ (currentNumberSyllab +1) + "/" + syllabesTest.Count;
-            save = "";
+            saveManager.SetCurrentSave(saveManager.GetSaveKey(0));
             bestText.text = "-";
         }
     }
@@ -342,21 +334,21 @@ public class AnswerManager : MonoBehaviour
         else
         {
             questionText.text = "Fin";
-            if (PlayerPrefs.GetInt(save, 0) < correctAnswers)
+            if (PlayerPrefs.GetInt(saveManager.GetCurrentSave(), 0) < correctAnswers)
             {
-                PlayerPrefs.SetInt(save, correctAnswers);
+                saveManager.Save(correctAnswers);
             }
         }
     }
 
     public void DeleteAllBests()
     {
-        PlayerPrefs.DeleteAll();
+        saveManager.DeleteAllBests();
     }
 
     public void DeleteCurrentBest()
     {
-        PlayerPrefs.DeleteKey(save);
+        saveManager.DeleteCurrentBest();
     }
 
 }
