@@ -8,19 +8,8 @@ public class SaveManager : MonoBehaviour
     List<string> saveNames;
     [SerializeField]
     List<string> saveKeys;
-
-    Dictionary<string, string> saves;
+    readonly Dictionary<string, string> saves = new();
     string currentSave = "";
-
-    //readonly string saveTestHiraganaPure = "saveTestHiraganaPure";
-    //readonly string saveTestHiraganaImpure = "saveTestHiraganaImpure";
-    //readonly string saveTestHiraganaDiphthong = "saveTestHiraganaDiphthong";
-    //readonly string saveTestHiragana = "saveTestHiragana";
-    //readonly string saveTestKatakanaPure = "saveTestKatakanaPure";
-    //readonly string saveTestKatakanaImpure = "saveTestKatakanaImpure";
-    //readonly string saveTestKatakanaDiphthong = "saveTestKatakanaDiphthong";
-    //readonly string saveTestKatakana = "saveTestKatakana";
-    //readonly string saveTestHiraganaKatakana = "saveTestHiraganaKatakana";
 
     // Start is called before the first frame update
     void Start()

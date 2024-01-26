@@ -207,8 +207,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1583164750}
-        m_TargetAssemblyTypeName: AnswerManager, Assembly-CSharp
+      - m_Target: {fileID: 1583164756}
+        m_TargetAssemblyTypeName: LoadSyllabs, Assembly-CSharp
         m_MethodName: KatakanaTest
         m_Mode: 1
         m_Arguments:
@@ -715,8 +715,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1583164750}
-        m_TargetAssemblyTypeName: AnswerManager, Assembly-CSharp
+      - m_Target: {fileID: 1583164756}
+        m_TargetAssemblyTypeName: LoadSyllabs, Assembly-CSharp
         m_MethodName: PureKatakanaTest
         m_Mode: 6
         m_Arguments:
@@ -983,8 +983,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1583164750}
-        m_TargetAssemblyTypeName: AnswerManager, Assembly-CSharp
+      - m_Target: {fileID: 1583164756}
+        m_TargetAssemblyTypeName: LoadSyllabs, Assembly-CSharp
         m_MethodName: HiraganaAndKatakanaTest
         m_Mode: 1
         m_Arguments:
@@ -1477,8 +1477,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1583164750}
-        m_TargetAssemblyTypeName: AnswerManager, Assembly-CSharp
+      - m_Target: {fileID: 1583164756}
+        m_TargetAssemblyTypeName: LoadSyllabs, Assembly-CSharp
         m_MethodName: DiphthongHiraganaLearning
         m_Mode: 1
         m_Arguments:
@@ -1691,8 +1691,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1583164750}
-        m_TargetAssemblyTypeName: AnswerManager, Assembly-CSharp
+      - m_Target: {fileID: 1583164756}
+        m_TargetAssemblyTypeName: LoadSyllabs, Assembly-CSharp
         m_MethodName: ImpureHiraganaTest
         m_Mode: 6
         m_Arguments:
@@ -1905,8 +1905,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1583164750}
-        m_TargetAssemblyTypeName: AnswerManager, Assembly-CSharp
+      - m_Target: {fileID: 1583164756}
+        m_TargetAssemblyTypeName: LoadSyllabs, Assembly-CSharp
         m_MethodName: DiphthongKatakanaLearning
         m_Mode: 1
         m_Arguments:
@@ -2046,18 +2046,6 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2842,8 +2830,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1583164750}
-        m_TargetAssemblyTypeName: AnswerManager, Assembly-CSharp
+      - m_Target: {fileID: 1583164756}
+        m_TargetAssemblyTypeName: LoadSyllabs, Assembly-CSharp
         m_MethodName: DiphthongHiraganaTest
         m_Mode: 6
         m_Arguments:
@@ -2976,8 +2964,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1583164750}
-        m_TargetAssemblyTypeName: AnswerManager, Assembly-CSharp
+      - m_Target: {fileID: 1583164756}
+        m_TargetAssemblyTypeName: LoadSyllabs, Assembly-CSharp
         m_MethodName: PureHiraganaTest
         m_Mode: 6
         m_Arguments:
@@ -3476,8 +3464,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1583164750}
-        m_TargetAssemblyTypeName: AnswerManager, Assembly-CSharp
+      - m_Target: {fileID: 1583164756}
+        m_TargetAssemblyTypeName: LoadSyllabs, Assembly-CSharp
         m_MethodName: PureKatakanaLearning
         m_Mode: 1
         m_Arguments:
@@ -4051,8 +4039,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1583164750}
-        m_TargetAssemblyTypeName: AnswerManager, Assembly-CSharp
+      - m_Target: {fileID: 1583164756}
+        m_TargetAssemblyTypeName: LoadSyllabs, Assembly-CSharp
         m_MethodName: DiphthongKatakanaTest
         m_Mode: 6
         m_Arguments:
@@ -4673,8 +4661,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1583164750}
-        m_TargetAssemblyTypeName: AnswerManager, Assembly-CSharp
+      - m_Target: {fileID: 1583164756}
+        m_TargetAssemblyTypeName: LoadSyllabs, Assembly-CSharp
         m_MethodName: PureHiraganaLearning
         m_Mode: 1
         m_Arguments:
@@ -4967,8 +4955,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1583164750}
-        m_TargetAssemblyTypeName: AnswerManager, Assembly-CSharp
+      - m_Target: {fileID: 1583164756}
+        m_TargetAssemblyTypeName: LoadSyllabs, Assembly-CSharp
         m_MethodName: ImpureKatakanaLearning
         m_Mode: 1
         m_Arguments:
@@ -5261,8 +5249,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1583164750}
-        m_TargetAssemblyTypeName: AnswerManager, Assembly-CSharp
+      - m_Target: {fileID: 1583164756}
+        m_TargetAssemblyTypeName: LoadSyllabs, Assembly-CSharp
         m_MethodName: ImpureHiraganaLearning
         m_Mode: 1
         m_Arguments:
@@ -5395,8 +5383,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1583164750}
-        m_TargetAssemblyTypeName: AnswerManager, Assembly-CSharp
+      - m_Target: {fileID: 1583164756}
+        m_TargetAssemblyTypeName: LoadSyllabs, Assembly-CSharp
         m_MethodName: ImpureKatakanaTest
         m_Mode: 6
         m_Arguments:
@@ -5458,6 +5446,8 @@ GameObject:
   - component: {fileID: 1583164752}
   - component: {fileID: 1583164751}
   - component: {fileID: 1583164750}
+  - component: {fileID: 1583164755}
+  - component: {fileID: 1583164756}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -5477,9 +5467,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc1a4a4f942c2b64b96f5098e666f624, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  romajiJson: {fileID: 4900000, guid: f300a5e00e1cd0a41b69bb621650c1c9, type: 3}
-  hiraganaJson: {fileID: 4900000, guid: 1052166a9a417654b83d74b9eada03b0, type: 3}
-  katakanaJson: {fileID: 4900000, guid: 137a8887cb7082c489e65ab193e26aee, type: 3}
   questionText: {fileID: 239515586}
   answerText: {fileID: 755442690}
   answerRomajiText: {fileID: 2040903814}
@@ -5576,6 +5563,45 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1583164755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1583164749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bd8aca5a07ecfc4a81281c0856a2c26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveNames:
+  - noSave
+  - saveTestHiraganaPure
+  - saveTestHiraganaImpure
+  - saveTestHiraganaDiphthong
+  - saveTestHiragana
+  - saveTestKatakanaPure
+  - saveTestKatakanaImpure
+  - saveTestKatakanaDiphthong
+  - saveTestKatakana
+  - saveTestHiraganaKatakana
+  saveKeys: []
+--- !u!114 &1583164756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1583164749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be3cfded51b726d4b9c16d51e3cb714c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  romajiJson: {fileID: 4900000, guid: f300a5e00e1cd0a41b69bb621650c1c9, type: 3}
+  hiraganaJson: {fileID: 4900000, guid: 1052166a9a417654b83d74b9eada03b0, type: 3}
+  katakanaJson: {fileID: 4900000, guid: 137a8887cb7082c489e65ab193e26aee, type: 3}
 --- !u!1 &1678944932
 GameObject:
   m_ObjectHideFlags: 0
@@ -5707,8 +5733,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1583164750}
-        m_TargetAssemblyTypeName: AnswerManager, Assembly-CSharp
+      - m_Target: {fileID: 1583164756}
+        m_TargetAssemblyTypeName: LoadSyllabs, Assembly-CSharp
         m_MethodName: HiraganaTest
         m_Mode: 1
         m_Arguments:
@@ -6276,18 +6302,6 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
