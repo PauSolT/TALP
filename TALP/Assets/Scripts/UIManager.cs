@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -25,6 +26,16 @@ public class UIManager : MonoBehaviour
     {
         mainButtons.SetActive(false);
         katakanaButtons.SetActive(true);
+    }
+
+    public void GoToWords()
+    {
+        SceneManager.LoadScene(1);
+    }
+
+    public void GoToSyllabs()
+    {
+        SceneManager.LoadScene(0);
     }
 
 }
