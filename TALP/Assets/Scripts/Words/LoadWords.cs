@@ -39,19 +39,20 @@ public class LoadWords : MonoBehaviour
         }
     }
 
-    public void BasicWords(bool learning = false)
+    public void BasicWords()
     {
-
         wordsTest.Clear();
         wordsTest.AddRange(basicWords);
-        if (!learning)
-        {
-            IListExtensions.Shuffle(wordsTest);
-            saveManager.SetCurrentSave(saveManager.GetSaveKey(1));
-        }
-
+        IListExtensions.Shuffle(wordsTest);
+        saveManager.SetCurrentSave(saveManager.GetSaveKey(1));
         answerManager.SetCurrentWordsTest(wordsTest);
-        answerManager.ChangeMode(learning);
+        answerManager.StartTest();
+    }
+
+    public void ShuffleTest()
+    {
+        IListExtensions.Shuffle(wordsTest);
+        answerManager.SetCurrentWordsTest(wordsTest);
     }
 
 }

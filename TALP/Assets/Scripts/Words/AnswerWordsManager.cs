@@ -10,6 +10,7 @@ public class AnswerWordsManager : MonoBehaviour
     public Text answerOtherText;
     public Text correctText;
     public Text bestText;
+    public Text learningText;
     public InputField inputAnswer;
     public Button buttonAnswer;
 
@@ -19,6 +20,8 @@ public class AnswerWordsManager : MonoBehaviour
     int correctAnswers = 0;
 
     string currentSyllab = "";
+
+    bool learning = false;
 
     TouchScreenKeyboard touchScreenKeyboard;
     SaveManager saveManager;
@@ -44,8 +47,7 @@ public class AnswerWordsManager : MonoBehaviour
         wordsTest = currentList;
     }
 
-
-    public void ChangeMode(bool learning)
+    public void StartTest()
     {
         answerText.text = "";
         inputAnswer.text = "";
@@ -54,7 +56,13 @@ public class AnswerWordsManager : MonoBehaviour
         currentNumberSyllab = 0;
         correctAnswers = 0;
         currentSyllab = "";
-        DisplaySyllab(wordsTest[currentNumberSyllab]);
+
+        if (wordsTest.Count == 0)
+        {
+            return;
+        }
+
+        DisplaySyllab(wordsTest[currentNumberSyllab]);  
 
         if (!learning)
         {
@@ -63,20 +71,29 @@ public class AnswerWordsManager : MonoBehaviour
             correctText.text = "✔ " + correctAnswers + "/" + (currentNumberSyllab);
             bestText.text = "MEJOR: " + PlayerPrefs.GetInt(saveManager.GetCurrentSave(), 0);
             inputAnswer.Select();
+            learningText.text = "L: N";
         }
         else
         {
             buttonAnswer.onClick.RemoveAllListeners();
             buttonAnswer.onClick.AddListener(() => AnswerLearning());
             inputAnswer.text = wordsTest[currentNumberSyllab].word;
+            answerOtherText.text = wordsTest[currentNumberSyllab].word;
             correctText.text = "✔ " + (currentNumberSyllab + 1) + "/" + wordsTest.Count;
             saveManager.SetCurrentSave(saveManager.GetSaveKey(0));
             bestText.text = "-";
+            learningText.text = "L: Y";
         }
     }
 
+    public void ChangeMode()
+    {
+        learning = !learning;
+        StartTest();
+    }
 
-    void DisplaySyllab(Word syl)
+
+    public void DisplaySyllab(Word syl)
     {
         string syllab = syl.japanese;
         questionText.text = syllab;
@@ -98,18 +115,17 @@ public class AnswerWordsManager : MonoBehaviour
         string syl = currentSyllab;
         inputAnswer.text = "";
         answerText.text = syl;
-        answerOtherText.text = wordsTest[currentNumberSyllab].word;
+        answerOtherText.text = wordsTest[currentNumberSyllab].word + "\n" + wordsTest[currentNumberSyllab].extra;
         if (string.Compare(answer, wordsTest[currentNumberSyllab].word) == 0)
         {
             answerText.color = Color.green;
             correctAnswers++;
-            correctText.text = "✔ " + correctAnswers + "/" + (currentNumberSyllab + 1);
         }
         else
         {
             answerText.color = Color.red;
-            correctText.text = "✔ " + correctAnswers + "/" + (currentNumberSyllab + 1);
         }
+        correctText.text = "✔ " + correctAnswers + "/" + (currentNumberSyllab + 1);
         NextSyllab();
     }
 

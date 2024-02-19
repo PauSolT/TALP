@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Syllabs.unity
     guid: 3fc8acdd13e6c734bafef6554d6fdbcd
+  - enabled: 1
+    path: Assets/Scenes/Words.unity
+    guid: d9a441bf811b4b64d808e9e509f0f111
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 8f44d8c07f524a74f8daa9a87c2e33d1, type: 2}
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 1cfdc8634bc9fb3498707fbc329f0e4f, type: 2}
