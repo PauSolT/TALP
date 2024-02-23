@@ -5640,15 +5640,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   saveNames:
   - noSave
-  - saveTestHiraganaPure
-  - saveTestHiraganaImpure
-  - saveTestHiraganaDiphthong
-  - saveTestHiragana
-  - saveTestKatakanaPure
-  - saveTestKatakanaImpure
-  - saveTestKatakanaDiphthong
-  - saveTestKatakana
-  - saveTestHiraganaKatakana
+  - saveTestBasic
   saveKeys: []
 --- !u!114 &1583164756
 MonoBehaviour:

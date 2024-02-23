@@ -111,11 +111,15 @@ public class AnswerWordsManager : MonoBehaviour
     public void CheckAnswer()
     {
         inputAnswer.Select();
-        string answer = inputAnswer.text.Trim();
+        string answer = inputAnswer.text.Trim().ToLower();
         string syl = currentSyllab;
         inputAnswer.text = "";
         answerText.text = syl;
-        answerOtherText.text = wordsTest[currentNumberSyllab].word + "\n" + wordsTest[currentNumberSyllab].extra;
+        answerOtherText.text = wordsTest[currentNumberSyllab].word;
+        if (!string.IsNullOrEmpty(wordsTest[currentNumberSyllab].extra))
+        {
+            answerOtherText.text += "\n" + wordsTest[currentNumberSyllab].extra;
+        }
         if (string.Compare(answer, wordsTest[currentNumberSyllab].word) == 0)
         {
             answerText.color = Color.green;
