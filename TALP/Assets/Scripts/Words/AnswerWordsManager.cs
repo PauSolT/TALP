@@ -71,7 +71,7 @@ public class AnswerWordsManager : MonoBehaviour
             correctText.text = "✔ " + correctAnswers + "/" + (currentNumberSyllab);
             bestText.text = "MEJOR: " + PlayerPrefs.GetInt(saveManager.GetCurrentSave(), 0);
             inputAnswer.Select();
-            learningText.text = "L: N";
+            learningText.text = "APRENDER: NO";
         }
         else
         {
@@ -82,7 +82,7 @@ public class AnswerWordsManager : MonoBehaviour
             correctText.text = "✔ " + (currentNumberSyllab + 1) + "/" + wordsTest.Count;
             saveManager.SetCurrentSave(saveManager.GetSaveKey(0));
             bestText.text = "-";
-            learningText.text = "L: Y";
+            learningText.text = "APRENDER: SI";
         }
     }
 
@@ -96,6 +96,11 @@ public class AnswerWordsManager : MonoBehaviour
     public void DisplaySyllab(Word syl)
     {
         string syllab = syl.japanese;
+        if(!string.IsNullOrEmpty(syl.kanji))
+        {
+            syllab = syl.kanji + " (" + syl.japanese + ")";
+        }
+
         questionText.text = syllab;
         currentSyllab = syllab;
     }
@@ -115,11 +120,14 @@ public class AnswerWordsManager : MonoBehaviour
         string syl = currentSyllab;
         inputAnswer.text = "";
         answerText.text = syl;
-        answerOtherText.text = wordsTest[currentNumberSyllab].word;
+
         if (!string.IsNullOrEmpty(wordsTest[currentNumberSyllab].extra))
         {
-            answerOtherText.text += "\n" + wordsTest[currentNumberSyllab].extra;
+            answerText.text += "\n" + wordsTest[currentNumberSyllab].extra;
         }
+
+        answerOtherText.text = wordsTest[currentNumberSyllab].word;
+
         if (string.Compare(answer, wordsTest[currentNumberSyllab].word) == 0)
         {
             answerText.color = Color.green;
