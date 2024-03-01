@@ -11,6 +11,7 @@ public class AnswerWordsManager : MonoBehaviour
     public Text correctText;
     public Text bestText;
     public Text learningText;
+    public Text onlyKanjiText;
     public InputField inputAnswer;
     public Button buttonAnswer;
 
@@ -22,6 +23,9 @@ public class AnswerWordsManager : MonoBehaviour
     string currentSyllab = "";
 
     bool learning = false;
+    bool onlyKanji = false;
+    [SerializeField]
+    bool checkJapaneseAnswer;
 
     TouchScreenKeyboard touchScreenKeyboard;
     SaveManager saveManager;
@@ -62,7 +66,7 @@ public class AnswerWordsManager : MonoBehaviour
             return;
         }
 
-        DisplaySyllab(wordsTest[currentNumberSyllab]);  
+        DisplaySyllab(wordsTest[currentNumberSyllab]);
 
         if (!learning)
         {
@@ -77,9 +81,7 @@ public class AnswerWordsManager : MonoBehaviour
         {
             buttonAnswer.onClick.RemoveAllListeners();
             buttonAnswer.onClick.AddListener(() => AnswerLearning());
-            inputAnswer.text = wordsTest[currentNumberSyllab].word;
-            answerOtherText.text = wordsTest[currentNumberSyllab].word;
-            correctText.text = "✔ " + (currentNumberSyllab + 1) + "/" + wordsTest.Count;
+            HandleDisplayLearning();
             saveManager.SetCurrentSave(saveManager.GetSaveKey(0));
             bestText.text = "-";
             learningText.text = "APRENDER: SI";
@@ -96,9 +98,14 @@ public class AnswerWordsManager : MonoBehaviour
     public void DisplaySyllab(Word syl)
     {
         string syllab = syl.japanese;
-        if(!string.IsNullOrEmpty(syl.kanji))
+        if(!string.IsNullOrEmpty(syl.kanji) && !checkJapaneseAnswer)
         {
             syllab = syl.kanji + " (" + syl.japanese + ")";
+        }
+        if (!string.IsNullOrEmpty(syl.kanji) && onlyKanji ||
+            !string.IsNullOrEmpty(syl.kanji) && checkJapaneseAnswer)
+        {
+            syllab = syl.kanji;
         }
 
         questionText.text = syllab;
@@ -108,11 +115,23 @@ public class AnswerWordsManager : MonoBehaviour
     public void AnswerLearning()
     {
         NextSyllab();
-        inputAnswer.text = wordsTest[currentNumberSyllab].word;
-        correctText.text = "✔ " + (currentNumberSyllab + 1) + "/" + wordsTest.Count;
-        answerOtherText.text = wordsTest[currentNumberSyllab].word;
+        HandleDisplayLearning();
     }
 
+    void HandleDisplayLearning()
+    {
+        if (checkJapaneseAnswer)
+        {
+            inputAnswer.text = wordsTest[currentNumberSyllab].japanese;
+            answerOtherText.text = wordsTest[currentNumberSyllab].japanese;
+        }
+        else
+        {
+            inputAnswer.text = wordsTest[currentNumberSyllab].word;
+            answerOtherText.text = wordsTest[currentNumberSyllab].word;
+        }
+        correctText.text = "✔ " + (currentNumberSyllab + 1) + "/" + wordsTest.Count;
+    }
     public void CheckAnswer()
     {
         inputAnswer.Select();
@@ -121,14 +140,23 @@ public class AnswerWordsManager : MonoBehaviour
         inputAnswer.text = "";
         answerText.text = syl;
 
+
         if (!string.IsNullOrEmpty(wordsTest[currentNumberSyllab].extra))
         {
             answerText.text += "\n" + wordsTest[currentNumberSyllab].extra;
         }
 
-        answerOtherText.text = wordsTest[currentNumberSyllab].word;
+        if(checkJapaneseAnswer)
+        {
+            answerOtherText.text = wordsTest[currentNumberSyllab].japanese;
+        }
+        else
+        {
+            answerOtherText.text = wordsTest[currentNumberSyllab].word;
+        }
 
-        if (string.Compare(answer, wordsTest[currentNumberSyllab].word) == 0)
+        if (string.Compare(answer, wordsTest[currentNumberSyllab].word) == 0 ||
+            checkJapaneseAnswer && string.Compare(answer, wordsTest[currentNumberSyllab].japanese) == 0)
         {
             answerText.color = Color.green;
             correctAnswers++;
@@ -168,4 +196,27 @@ public class AnswerWordsManager : MonoBehaviour
         saveManager.DeleteCurrentBest();
     }
 
+    public void OnlyKanjiMode()
+    {
+        onlyKanji = !onlyKanji;
+
+        if (onlyKanji)
+        {
+            onlyKanjiText.text = "SOLO KANJI: SI";
+        } else
+        {
+            onlyKanjiText.text = "SOLO KANJI: NO";
+        }
+        DisplaySyllab(wordsTest[currentNumberSyllab]);
+    }
+
+    public void ActivateCheckJapaneseAnswer()
+    {
+        checkJapaneseAnswer = true;
+    }
+
+    public void DeactivateCheckJapaneseAnswer()
+    {
+        checkJapaneseAnswer = false;
+    }
 }

@@ -22,6 +22,8 @@ public class LoadWords : MonoBehaviour
     AnswerWordsManager answerManager;
     SaveManager saveManager;
 
+    List<int> activateJapaneseAnswers = new() { 1 };
+
     struct WordsContainer
     {
         public string[] basic;
@@ -57,8 +59,20 @@ public class LoadWords : MonoBehaviour
 
     void LoadButtons()
     {
+        for (int i = 0; i < testButtons.Length; i++)
+        {
+            if (activateJapaneseAnswers.Contains(i))
+            {
+                testButtons[i].onClick.AddListener(() => answerManager.ActivateCheckJapaneseAnswer());
+            }
+            else
+            {
+                testButtons[i].onClick.AddListener(() => answerManager.DeactivateCheckJapaneseAnswer());
+            }
+        }
         testButtons[0].onClick.AddListener(() => BasicWords(basicWords));
         testButtons[1].onClick.AddListener(() => BasicWords(lesson3Numbers));
+        testButtons[2].onClick.AddListener(() => BasicWords(lesson3Numbers));
     }
 
     public void BasicWords(List<Word> test)
