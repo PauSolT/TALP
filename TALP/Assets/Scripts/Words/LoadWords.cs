@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.IO;
 
 public class LoadWords : MonoBehaviour
 {
@@ -15,47 +16,102 @@ public class LoadWords : MonoBehaviour
     [SerializeField]
     Button[] testButtons;
 
-    List<Word> basicWords = new();
-    List<Word> lesson3Numbers = new();
+    List<List<Word>> allwords = new();
     List<Word> wordsTest = new();
 
     AnswerWordsManager answerManager;
     SaveManager saveManager;
 
     List<int> activateJapaneseAnswers = new() { 1 };
+    List<int> haveSameListOfWords = new() { 2 };
+    WordsData jsonWords = new();
 
-    struct WordsContainer
+    string filePath = "Assets/JSONs/words.json";
+    public class WordsData
     {
-        public string[] basic;
-        public string[] lesson3Numbers;
+        public Dictionary<string, Dictionary<string, List<string>>> words;
     }
 
     void Start()
     {
-        LoadJson();
+        jsonWords = LoadJson(filePath);
+        LoadAllWords();
         answerManager = GetComponent<AnswerWordsManager>();
         saveManager = GetComponent<SaveManager>();
         testButtons = allButtonTests.GetComponentsInChildren<Button>();
         LoadButtons();
     }
 
-
-    void LoadJson()
+    public WordsData LoadJson(string jsonFilePath)
     {
-        WordsContainer wordsJap = JsonUtility.FromJson<WordsContainer>(wordsJapJson.text);
-        WordsContainer words = JsonUtility.FromJson<WordsContainer>(wordsJson.text);
-        WordsContainer extras = JsonUtility.FromJson<WordsContainer>(extrasJson.text);
-        WordsContainer kanji = JsonUtility.FromJson<WordsContainer>(kanjiJson.text);
-
-        for (int i = 0; i < wordsJap.basic.Length; i++)
+        // Check if the file exists
+        if (!File.Exists(jsonFilePath))
         {
-            basicWords.Add(new Word(wordsJap.basic[i], kanji.basic[i], words.basic[i], extras.basic[i]));
+            Debug.LogError("JSON file does not exist: " + jsonFilePath);
+            return null;
         }
-        for (int i = 0; i < wordsJap.lesson3Numbers.Length; i++)
+
+        // Read the JSON file
+        string jsonContent = File.ReadAllText(jsonFilePath);
+
+        // Deserialize the JSON into a custom class
+        return DeserializeJson(jsonContent);
+    }
+
+    private WordsData DeserializeJson(string jsonContent)
+    {
+        WordsData wordsData = new WordsData();
+        wordsData.words = new Dictionary<string, Dictionary<string, List<string>>>();
+
+        // Deserialize the JSON content manually
+        Dictionary<string, object> jsonDict = (Dictionary<string, object>)MiniJSON.Json.Deserialize(jsonContent);
+        foreach (KeyValuePair<string, object> categoryEntry in jsonDict)
         {
-            lesson3Numbers.Add(new Word(wordsJap.lesson3Numbers[i], kanji.lesson3Numbers[i], words.lesson3Numbers[i], extras.lesson3Numbers[i]));
+            Dictionary<string, object> categoryDict = (Dictionary<string, object>)categoryEntry.Value;
+            Dictionary<string, List<string>> categoryWords = new Dictionary<string, List<string>>();
+
+            foreach (KeyValuePair<string, object> wordsEntry in categoryDict)
+            {
+                List<object> wordsList = (List<object>)wordsEntry.Value;
+                List<string> words = new List<string>();
+
+                foreach (object wordObj in wordsList)
+                {
+                    words.Add(wordObj.ToString());
+                }
+
+                categoryWords.Add(wordsEntry.Key, words);
+            }
+
+            wordsData.words.Add(categoryEntry.Key, categoryWords);
+        }
+
+        return wordsData;
+    }
+
+
+    void LoadAllWords()
+    {
+        List<KeyValuePair<string, Dictionary<string, List<string>>>> words = new(jsonWords.words);
+
+        for (int i = 0; i < words[0].Value.Count; i++)
+        {
+            allwords.Add(new());
+            List<List<string>> valuesOfWords = new(words[i].Value.Values);
+            for (int j = 0; j < valuesOfWords[i].Count; j++)
+            {
+                List<string> listToMakeWord = new();
+                foreach (KeyValuePair<string, Dictionary<string, List<string>>> item in words)
+                {
+                    List<List<string>> wordsToArrange = new(item.Value.Values);
+                    listToMakeWord.Add(wordsToArrange[i][j]);
+                }
+
+                allwords[i].Add(new Word(listToMakeWord[0], listToMakeWord[1], listToMakeWord[2], listToMakeWord[3]));
+            }
         }
     }
+
 
     void LoadButtons()
     {
@@ -70,9 +126,18 @@ public class LoadWords : MonoBehaviour
                 testButtons[i].onClick.AddListener(() => answerManager.DeactivateCheckJapaneseAnswer());
             }
         }
-        testButtons[0].onClick.AddListener(() => BasicWords(basicWords));
-        testButtons[1].onClick.AddListener(() => BasicWords(lesson3Numbers));
-        testButtons[2].onClick.AddListener(() => BasicWords(lesson3Numbers));
+
+        int iAllWords = -1;
+        for (int i = 0; i < testButtons.Length; i++)
+        {
+            if (!haveSameListOfWords.Contains(i))
+            {
+                iAllWords++;
+            }
+            int index = iAllWords;
+
+            testButtons[i].onClick.AddListener(() => BasicWords(allwords[index]));
+        }
     }
 
     public void BasicWords(List<Word> test)
