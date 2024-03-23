@@ -118,17 +118,18 @@ public class LoadWords : MonoBehaviour
             }
             int indexWords = iAllWords;
 
-            testButtons[i].onClick.AddListener(() => BasicWords(allwords[indexWords], index+1));
+            testButtons[i].onClick.AddListener(() => BasicWords(allwords[indexWords], index+1, testButtons[index]));
         }
     }
 
-    public void BasicWords(List<Word> test, int saveSlot)
+    public void BasicWords(List<Word> test, int saveSlot, Button buttonToRestart)
     {
         wordsTest.Clear();
         wordsTest.AddRange(test);
         IListExtensions.Shuffle(wordsTest);
         saveManager.SetCurrentSave(saveManager.GetSaveKey(saveSlot));
         answerManager.SetCurrentWordsTest(wordsTest);
+        answerManager.SetButtonToRestart(buttonToRestart);
         answerManager.StartTest();
     }
 

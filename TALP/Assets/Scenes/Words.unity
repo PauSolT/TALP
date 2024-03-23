@@ -2404,9 +2404,11 @@ MonoBehaviour:
   bestText: {fileID: 1926540921}
   learningText: {fileID: 2103275304}
   onlyKanjiText: {fileID: 2034548696}
+  answerButtonText: {fileID: 105711299}
   inputAnswer: {fileID: 1133664701}
   buttonAnswer: {fileID: 1106283693}
   wordsTest: []
+  currentNumberSyllab: 0
   checkJapaneseAnswer: 0
 --- !u!114 &1583164757
 MonoBehaviour:

@@ -12,11 +12,14 @@ public class AnswerWordsManager : MonoBehaviour
     public Text bestText;
     public Text learningText;
     public Text onlyKanjiText;
+    public Text answerButtonText;
     public InputField inputAnswer;
     public Button buttonAnswer;
+    Button buttonToRestart;
 
     public List<Word> wordsTest = new();
 
+    [SerializeField]
     int currentNumberSyllab = 0;
     int correctAnswers = 0;
 
@@ -49,6 +52,11 @@ public class AnswerWordsManager : MonoBehaviour
     public void SetCurrentWordsTest(List<Word> currentList)
     {
         wordsTest = currentList;
+    }
+
+    public void SetButtonToRestart(Button but)
+    {
+        buttonToRestart = but;
     }
 
     public void StartTest()
@@ -178,10 +186,19 @@ public class AnswerWordsManager : MonoBehaviour
         }
         else
         {
-            questionText.text = "Fin";
-            if (PlayerPrefs.GetInt(saveManager.GetCurrentSave(), 0) < correctAnswers)
+            if(questionText.text == "Fin")
             {
-                saveManager.Save(correctAnswers);
+                answerButtonText.text = "Check";
+                buttonToRestart.onClick.Invoke();
+            }
+            else
+            {
+                questionText.text = "Fin";
+                answerButtonText.text = "Restart";
+                if (PlayerPrefs.GetInt(saveManager.GetCurrentSave(), 0) < correctAnswers)
+                {
+                    saveManager.Save(correctAnswers);
+                }
             }
         }
     }
