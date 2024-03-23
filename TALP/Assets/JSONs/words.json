@@ -31,6 +31,21 @@
       "せん",
       "まん"
     ],
+    "lesson3UsefulWords": [
+      "ひと",
+      "おとこ",
+      "おんな",
+      "つき",
+      "ひ",
+      "みず",
+      "き",
+      "かね",
+      "つち",
+      "ひ",
+      "やま",
+      "かわ",
+      "た"
+    ],
     "lesson4Salutations": [
       "おはようございます",
       "こんにちは",
@@ -56,6 +71,21 @@
       "百",
       "千",
       "万"
+    ],
+    "lesson3UsefulWords": [
+      "人",
+      "男",
+      "女",
+      "月",
+      "火",
+      "水",
+      "木",
+      "金",
+      "土",
+      "日",
+      "山",
+      "川",
+      "田"
     ],
     "lesson4Salutations": ["", "", "", "", "", ""]
   },
@@ -91,11 +121,26 @@
       "1000",
       "10000"
     ],
+    "lesson3UsefulWords": [
+      "persona",
+      "home",
+      "dona",
+      "lluna",
+      "foc",
+      "aigua",
+      "arbre",
+      "diners",
+      "terra",
+      "dia",
+      "muntanya",
+      "riu",
+      "camp"
+    ],
     "lesson4Salutations": [
       "bon dia",
       "bon dia",
-      "boa nit",
-      "boa nit",
+      "bona nit",
+      "bona nit",
       "com estas?",
       "estic be"
     ]
@@ -104,8 +149,8 @@
     "basic": [
       "",
       "",
-      "(mati)",
-      "(migdia)",
+      "mati",
+      "migdia",
       "",
       "",
       "",
@@ -128,6 +173,21 @@
       "",
       "く",
       "",
+      "",
+      "",
+      ""
+    ],
+    "lesson3UsefulWords": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "or",
+      "",
+      "sol",
       "",
       "",
       ""
