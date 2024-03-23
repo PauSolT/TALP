@@ -2420,8 +2420,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4f2b84858f245e499627594de62aa0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wordsJapJson: {fileID: 4900000, guid: cf6f21d365bf61c4da2a5071d8b43e45, type: 3}
   allButtonTests: {fileID: 594976121}
+  words: {fileID: 4900000, guid: cf6f21d365bf61c4da2a5071d8b43e45, type: 3}
   testButtons: []
 --- !u!1 &1676655909
 GameObject:

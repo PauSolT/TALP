@@ -2,13 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System.IO;
 
 public class LoadWords : MonoBehaviour
 {
-    public TextAsset wordsJapJson;
-
     public GameObject allButtonTests;
+    public TextAsset words;
 
     [SerializeField]
     Button[] testButtons;
@@ -23,7 +21,6 @@ public class LoadWords : MonoBehaviour
     List<int> haveSameListOfWords = new() { 2, 4 };
     WordsData jsonWords = new();
 
-    string filePath = "Assets/JSONs/words.json";
     public class WordsData
     {
         public Dictionary<string, Dictionary<string, List<string>>> words;
@@ -31,7 +28,7 @@ public class LoadWords : MonoBehaviour
 
     void Start()
     {
-        jsonWords = LoadJson(filePath);
+        jsonWords = LoadJson();
         LoadAllWords();
         answerManager = GetComponent<AnswerWordsManager>();
         saveManager = GetComponent<SaveManager>();
@@ -39,19 +36,10 @@ public class LoadWords : MonoBehaviour
         LoadButtons();
     }
 
-    public WordsData LoadJson(string jsonFilePath)
+    public WordsData LoadJson()
     {
-        // Check if the file exists
-        if (!File.Exists(jsonFilePath))
-        {
-            Debug.LogError("JSON file does not exist: " + jsonFilePath);
-            return null;
-        }
+        string jsonContent = words.text;
 
-        // Read the JSON file
-        string jsonContent = File.ReadAllText(jsonFilePath);
-
-        // Deserialize the JSON into a custom class
         return DeserializeJson(jsonContent);
     }
 
