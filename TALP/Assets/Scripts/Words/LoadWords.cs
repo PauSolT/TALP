@@ -7,9 +7,6 @@ using System.IO;
 public class LoadWords : MonoBehaviour
 {
     public TextAsset wordsJapJson;
-    public TextAsset wordsJson;
-    public TextAsset extrasJson;
-    public TextAsset kanjiJson;
 
     public GameObject allButtonTests;
 
@@ -22,8 +19,8 @@ public class LoadWords : MonoBehaviour
     AnswerWordsManager answerManager;
     SaveManager saveManager;
 
-    List<int> activateJapaneseAnswers = new() { 1 };
-    List<int> haveSameListOfWords = new() { 2 };
+    List<int> activateJapaneseAnswers = new() { 1, 3 };
+    List<int> haveSameListOfWords = new() { 2, 4 };
     WordsData jsonWords = new();
 
     string filePath = "Assets/JSONs/words.json";
@@ -115,8 +112,10 @@ public class LoadWords : MonoBehaviour
 
     void LoadButtons()
     {
+        int iAllWords = -1;
         for (int i = 0; i < testButtons.Length; i++)
         {
+            int index = i;
             if (activateJapaneseAnswers.Contains(i))
             {
                 testButtons[i].onClick.AddListener(() => answerManager.ActivateCheckJapaneseAnswer());
@@ -125,27 +124,22 @@ public class LoadWords : MonoBehaviour
             {
                 testButtons[i].onClick.AddListener(() => answerManager.DeactivateCheckJapaneseAnswer());
             }
-        }
-
-        int iAllWords = -1;
-        for (int i = 0; i < testButtons.Length; i++)
-        {
             if (!haveSameListOfWords.Contains(i))
             {
                 iAllWords++;
             }
-            int index = iAllWords;
+            int indexWords = iAllWords;
 
-            testButtons[i].onClick.AddListener(() => BasicWords(allwords[index]));
+            testButtons[i].onClick.AddListener(() => BasicWords(allwords[indexWords], index+1));
         }
     }
 
-    public void BasicWords(List<Word> test)
+    public void BasicWords(List<Word> test, int saveSlot)
     {
         wordsTest.Clear();
         wordsTest.AddRange(test);
         IListExtensions.Shuffle(wordsTest);
-        saveManager.SetCurrentSave(saveManager.GetSaveKey(1));
+        saveManager.SetCurrentSave(saveManager.GetSaveKey(saveSlot));
         answerManager.SetCurrentWordsTest(wordsTest);
         answerManager.StartTest();
     }
