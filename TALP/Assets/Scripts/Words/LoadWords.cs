@@ -8,7 +8,6 @@ public class LoadWords : MonoBehaviour
     public GameObject allButtonTests;
     public TextAsset words;
 
-    [SerializeField]
     Button[] testButtons;
 
     List<List<Word>> allwords = new();
@@ -17,7 +16,9 @@ public class LoadWords : MonoBehaviour
     AnswerWordsManager answerManager;
     SaveManager saveManager;
 
+    [SerializeField]
     List<int> activateJapaneseAnswers = new() { 1, 3 };
+    [SerializeField]
     List<int> haveSameListOfWords = new() { 2, 4 };
     WordsData jsonWords = new();
 

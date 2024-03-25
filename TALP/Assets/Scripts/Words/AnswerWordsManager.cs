@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class AnswerWordsManager : MonoBehaviour
 {
-    public Text questionText;
-    public Text answerText;
-    public Text answerOtherText;
+    public RubyTextMeshProUGUI questionText;
+    public RubyTextMeshProUGUI answerText;
+    public RubyTextMeshProUGUI answerOtherText;
     public Text correctText;
     public Text bestText;
     public Text learningText;
@@ -17,9 +18,8 @@ public class AnswerWordsManager : MonoBehaviour
     public Button buttonAnswer;
     Button buttonToRestart;
 
-    public List<Word> wordsTest = new();
+    List<Word> wordsTest = new();
 
-    [SerializeField]
     int currentNumberSyllab = 0;
     int correctAnswers = 0;
 
@@ -27,7 +27,6 @@ public class AnswerWordsManager : MonoBehaviour
 
     bool learning = false;
     bool onlyKanji = false;
-    [SerializeField]
     bool checkJapaneseAnswer;
 
     TouchScreenKeyboard touchScreenKeyboard;
@@ -61,9 +60,9 @@ public class AnswerWordsManager : MonoBehaviour
 
     public void StartTest()
     {
-        answerText.text = "";
+        answerText.uneditedText = "";
         inputAnswer.text = "";
-        answerOtherText.text = "";
+        answerOtherText.uneditedText = "";
         correctText.text = "✔";
         currentNumberSyllab = 0;
         correctAnswers = 0;
@@ -116,7 +115,7 @@ public class AnswerWordsManager : MonoBehaviour
             syllab = syl.kanji;
         }
 
-        questionText.text = syllab;
+        questionText.uneditedText = syllab;
         currentSyllab = syllab;
     }
 
@@ -131,12 +130,12 @@ public class AnswerWordsManager : MonoBehaviour
         if (checkJapaneseAnswer)
         {
             inputAnswer.text = wordsTest[currentNumberSyllab].japanese;
-            answerOtherText.text = wordsTest[currentNumberSyllab].japanese;
+            answerOtherText.uneditedText = wordsTest[currentNumberSyllab].japanese;
         }
         else
         {
             inputAnswer.text = wordsTest[currentNumberSyllab].word;
-            answerOtherText.text = wordsTest[currentNumberSyllab].word;
+            answerOtherText.uneditedText = wordsTest[currentNumberSyllab].word;
         }
         correctText.text = "✔ " + (currentNumberSyllab + 1) + "/" + wordsTest.Count;
     }
@@ -146,19 +145,19 @@ public class AnswerWordsManager : MonoBehaviour
         string answer = inputAnswer.text.Trim().ToLower();
         string syl = currentSyllab;
         inputAnswer.text = "";
-        answerText.text = syl;
+        answerText.uneditedText = syl;
 
 
         if(checkJapaneseAnswer)
         {
-            answerOtherText.text = wordsTest[currentNumberSyllab].japanese;
+            answerOtherText.uneditedText = wordsTest[currentNumberSyllab].japanese;
         }
         else
         {
-            answerOtherText.text = wordsTest[currentNumberSyllab].word;
+            answerOtherText.uneditedText = wordsTest[currentNumberSyllab].word;
             if (!string.IsNullOrEmpty(wordsTest[currentNumberSyllab].extra))
             {
-                answerOtherText.text += "/\n" + wordsTest[currentNumberSyllab].extra;
+                answerOtherText.uneditedText += "/\n" + wordsTest[currentNumberSyllab].extra;
             }
         }
 
@@ -186,14 +185,14 @@ public class AnswerWordsManager : MonoBehaviour
         }
         else
         {
-            if(questionText.text == "Fin")
+            if(questionText.uneditedText == "Fin")
             {
                 answerButtonText.text = "Check";
                 buttonToRestart.onClick.Invoke();
             }
             else
             {
-                questionText.text = "Fin";
+                questionText.uneditedText = "Fin";
                 answerButtonText.text = "Restart";
                 if (PlayerPrefs.GetInt(saveManager.GetCurrentSave(), 0) < correctAnswers)
                 {
