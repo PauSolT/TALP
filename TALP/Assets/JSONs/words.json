@@ -53,6 +53,13 @@
       "お<ruby=やす>休</ruby>みなさい",
       "お<ruby=げんき>元気</ruby>ですか",
       "はい、<ruby=げんき>元気</ruby>です"
+    ],
+    "lesson4Presentations": [
+      "はじめまして",
+      "<ruby=わたし>私</ruby>の<ruby=なまえ>名前</ruby>は__です",
+      "よろしくお<ruby=ねが>願</ruby>いします",
+      "あなたの<ruby=なまえ>名前</ruby>は<ruby=なん>何</ruby>ですか？",
+      "こちらこそよろしく"
     ]
   },
   "wordsKanji": {
@@ -87,7 +94,14 @@
       "川",
       "田"
     ],
-    "lesson4Salutations": ["", "", "", "", "", ""]
+    "lesson4Salutations": ["", "", "", "", "", ""],
+    "lesson4Presentations": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ]
   },
   "wordsRomaji": {
     "basic": [
@@ -143,6 +157,13 @@
       "bona nit",
       "com estas?",
       "estic be"
+    ],
+    "lesson4Presentations": [
+      "encantat",
+      "el meu nom es",
+      "encantat de coneixer",
+      "quin es el seu nom?",
+      "encantat de coneixer"
     ]
   },
   "wordsExtra": {
@@ -199,6 +220,13 @@
       "dormir",
       "com esta voste?",
       ""
+    ],
+    "lesson4Presentations": [
+      "",
+      "em dic",
+      "",
+      "com es diu voste?",
+      "(jo tambe)"
     ]
   }
 }

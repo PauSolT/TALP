@@ -80,20 +80,19 @@ public class LoadWords : MonoBehaviour
     {
         List<KeyValuePair<string, Dictionary<string, List<string>>>> words = new(jsonWords.words);
 
-        for (int i = 0; i < words[0].Value.Count; i++)
+        List<List<string>> valuesOfWords = new(words[0].Value.Values);
+        for (int j = 0; j < words[0].Value.Count; j++)
         {
             allwords.Add(new());
-            List<List<string>> valuesOfWords = new(words[i].Value.Values);
-            for (int j = 0; j < valuesOfWords[i].Count; j++)
+            for (int k = 0; k < valuesOfWords[j].Count; k++)
             {
                 List<string> listToMakeWord = new();
                 foreach (KeyValuePair<string, Dictionary<string, List<string>>> item in words)
                 {
                     List<List<string>> wordsToArrange = new(item.Value.Values);
-                    listToMakeWord.Add(wordsToArrange[i][j]);
+                    listToMakeWord.Add(wordsToArrange[j][k]);
                 }
-
-                allwords[i].Add(new Word(listToMakeWord[0], listToMakeWord[1], listToMakeWord[2], listToMakeWord[3]));
+                allwords[j].Add(new Word(listToMakeWord[0], listToMakeWord[1], listToMakeWord[2], listToMakeWord[3]));
             }
         }
     }
@@ -119,7 +118,10 @@ public class LoadWords : MonoBehaviour
             }
             int indexWords = iAllWords;
 
-            testButtons[i].onClick.AddListener(() => BasicWords(allwords[indexWords], index+1, testButtons[index]));
+            testButtons[i].onClick.AddListener(() =>
+            BasicWords(allwords[indexWords],
+            index + 1,
+            testButtons[index]));
         }
     }
 
