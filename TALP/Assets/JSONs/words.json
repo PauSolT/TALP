@@ -60,6 +60,14 @@
       "よろしくお<ruby=ねが>願</ruby>いします",
       "あなたの<ruby=なまえ>名前</ruby>は<ruby=なん>何</ruby>ですか？",
       "こちらこそよろしく"
+    ],
+    "lesson4Thanks": [
+      "ありがとう",
+      "どうもありがとうございます",
+      "ありがとうございます",
+      "どうも",
+      "どういたしまして",
+      "いいえ(gracies)"
     ]
   },
   "wordsKanji": {
@@ -96,6 +104,14 @@
     ],
     "lesson4Salutations": ["", "", "", "", "", ""],
     "lesson4Presentations": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "lesson4Thanks": [
+      "",
       "",
       "",
       "",
@@ -164,6 +180,14 @@
       "encantat de coneixer",
       "quin es el seu nom?",
       "encantat de coneixer"
+    ],
+    "lesson4Thanks": [
+      "gracies",
+      "moltes gracies",
+      "gracies",
+      "gracies",
+      "de res",
+      "de res"
     ]
   },
   "wordsExtra": {
@@ -227,6 +251,14 @@
       "",
       "com es diu voste?",
       "(jo tambe)"
+    ],
+    "lesson4Thanks": [
+      "basica",
+      "molt formal",
+      "formal",
+      "senzilla",
+      "",
+      "senzilla"
     ]
   }
 }
