@@ -68,6 +68,21 @@
       "どうも",
       "どういたしまして",
       "いいえ(gracies)"
+    ],
+    "lesson4Prices": [
+      "いらっしゃいませ",
+      "これはいくらですか?",
+      "これは＿<ruby=えん>円</ruby>です",
+      "これをください",
+      "これをお<ruby=ねが>願</ruby>いします"
+    ],
+    "lesson4Farewell": [
+      "さようなら",
+      "それでは(それじゃ)、また<ruby=あした>明日</ruby><ruby=あ>会</ruby>いましょう",
+      "じゃ、また<ruby=あした>明日</ruby>",
+      "じゃね、また!",
+      "またね!",
+      "バイバイ!"
     ]
   },
   "wordsKanji": {
@@ -103,14 +118,16 @@
       "田"
     ],
     "lesson4Salutations": ["", "", "", "", "", ""],
-    "lesson4Presentations": [
+    "lesson4Presentations": ["", "", "", "", ""],
+    "lesson4Thanks": ["", "", "", "", "", ""],
+    "lesson4Prices": [
       "",
       "",
       "",
       "",
       ""
     ],
-    "lesson4Thanks": [
+    "lesson4Farewell": [
       "",
       "",
       "",
@@ -188,6 +205,21 @@
       "gracies",
       "de res",
       "de res"
+    ],
+    "lesson4Prices": [
+      "benvingut",
+      "quant val aixo?",
+      "aixo val _ iens",
+      "vull aixo",
+      "desitjo aixo"
+    ],
+    "lesson4Farewell": [
+      "adeu",
+      "be, dema ens tornarem a trobar",
+      "be, fins dema",
+      "be fins despres!",
+      "fins despres!",
+      "bye bye!"
     ]
   },
   "wordsExtra": {
@@ -259,6 +291,21 @@
       "senzilla",
       "",
       "senzilla"
+    ],
+    "lesson4Prices": [
+      "que desitja?",
+      "",
+      "",
+      "ho vull",
+      ""
+    ],
+    "lesson4Farewell": [
+      "",
+      "",
+      "apa, fins dema",
+      "apa, fins despres!",
+      "",
+      ""
     ]
   }
 }
