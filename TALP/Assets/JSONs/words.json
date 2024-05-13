@@ -83,6 +83,44 @@
       "じゃね、また!",
       "またね!",
       "バイバイ!"
+    ],
+    "lesson4UsefulExpressions": [
+      "はい",
+      "いいえ",
+      "すみません",
+      "ごめんなさい",
+      "やった!",
+      "あめでとうございます!"
+    ],
+    "lesson4UsefulKanji1": [
+      "なに",
+      "こ",
+      "えん",
+      "みぎ",
+      "ひだり",
+      "うえ",
+      "した",
+      "なか",
+      "め",
+      "くち",
+      "て",
+      "みみ",
+      "はな"
+    ],
+    "lesson4UsefulKanji2": [
+      "こころ",
+      "はる",
+      "なつ",
+      "あき",
+      "ふゆ",
+      "ひがし",
+      "にし",
+      "みなみ",
+      "きた",
+      "がくせい",
+      "せんせい",
+      "がっこう",
+      "だいがく"
     ]
   },
   "wordsKanji": {
@@ -134,6 +172,44 @@
       "",
       "",
       ""
+    ],
+    "lesson4UsefulExpressions": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "lesson4UsefulKanji1": [
+      "何",
+      "子",
+      "円",
+      "右",
+      "左",
+      "上",
+      "下",
+      "中",
+      "目",
+      "口",
+      "手",
+      "耳",
+      "鼻"
+    ],
+    "lesson4UsefulKanji2": [
+      "心",
+      "春",
+      "夏",
+      "秋",
+      "冬",
+      "東",
+      "西",
+      "南",
+      "北",
+      "学生",
+      "先生",
+      "学校",
+      "大学"
     ]
   },
   "wordsRomaji": {
@@ -217,9 +293,47 @@
       "adeu",
       "be, dema ens tornarem a trobar",
       "be, fins dema",
-      "be fins despres!",
+      "be, fins despres!",
       "fins despres!",
       "bye bye!"
+    ],
+    "lesson4UsefulExpressions": [
+      "si",
+      "no",
+      "disculpi",
+      "perdoni",
+      "visca!",
+      "enhorabona!"
+    ],
+    "lesson4UsefulKanji1": [
+      "que?",
+      "nen",
+      "ien",
+      "dreta",
+      "esquerra",
+      "a dalt",
+      "a baix",
+      "centre",
+      "ull",
+      "boca",
+      "ma",
+      "orella",
+      "nas"
+    ],
+    "lesson4UsefulKanji2": [
+      "cor",
+      "primavera",
+      "estiu",
+      "tardor",
+      "hivern",
+      "est",
+      "oest",
+      "sud",
+      "nord",
+      "estudiuant",
+      "professor",
+      "escola",
+      "universitat"
     ]
   },
   "wordsExtra": {
@@ -304,6 +418,44 @@
       "",
       "apa, fins dema",
       "apa, fins despres!",
+      "",
+      ""
+    ],
+    "lesson4UsefulExpressions": [
+      "",
+      "",
+      "perdoni",
+      "ho he aconseguit!",
+      "",
+      ""
+    ],
+    "lesson4UsefulKanji1": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "lesson4UsefulKanji2": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
       "",
       ""
     ]
