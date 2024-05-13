@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PageManager : MonoBehaviour
 {
     public GameObject containerOfPages;
     public List<GameObject> allPages;
+    public Text pagesText;
 
     int maxPages;
     int currentPage = 1;
@@ -43,6 +45,7 @@ public class PageManager : MonoBehaviour
             page.SetActive(false);
         }
         allPages[currentPage - 1].SetActive(true);
+        pagesText.text = "PÀGINA " + currentPage + "/" + maxPages;
     }
 
     void SetAllPages()

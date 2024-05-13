@@ -67,6 +67,7 @@ public class AnswerWordsManager : MonoBehaviour
         currentNumberSyllab = 0;
         correctAnswers = 0;
         currentSyllab = "";
+        answerButtonText.text = "Check";
 
         if (wordsTest.Count == 0)
         {
