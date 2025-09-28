@@ -6,5 +6,4 @@ public class Syllab
 {
     public string romaji;
     public string japanese;
-    public int type;
 }
